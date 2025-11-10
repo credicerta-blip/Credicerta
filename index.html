@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CrediCerta — Empréstimo Pessoal Rápido e Seguro</title>
+<meta name="description" content="CrediCerta - Simule e contrate empréstimos pessoais e consignados online. Dinheiro rápido na conta, sem burocracia. Fale conosco via WhatsApp." />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+/* ===== PALETA FINANCEIRA (Claro e Azul) ===== */
+:root{
+  --bg: #f8f9fa; /* Fundo muito claro/branco */
+  --card: #ffffff; /* Card branco */
+  --text-dark: #212529; /* Texto escuro (para contraste) */
+  --metal: #495057; /* Texto secundário cinza */
+  --accent: #007bff; /* Azul primário (confiança) */
+  --accent-light: #66b3ff;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--text-dark);
+  /* Fundo suave com gradiente claro */
+  background: linear-gradient(180deg, var(--bg) 0%, #e9ecef 100%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x: hidden;
+}
+/* Hero com imagem de fundo sutil e cores claras */
+header.site-hero{
+  padding:5rem 1rem;
+  text-align:center;
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.9)), url('https://images.pexels.com/photos/3943721/pexels-photo-3943721.jpeg?auto=compress&cs=tinysrgb&w=1600&h=700&fit=crop');
+  background-size:cover;
+  background-position:center;
+  color:var(--text-dark);
+  border-bottom: 3px solid var(--accent);
+}
+header .brand {
+  font-weight: 800;
+  font-size: 2.5rem; /* era 1.8rem */
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+header h1{color:var(--text-dark); margin-top: 1rem;}
+header p.lead{color:var(--metal);max-width:900px;margin:0 auto 1.5rem;}
+
+.container-main{padding:2.5rem 1rem;}
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.chip{
+  background: #e9ecef;
+  color:var(--metal);
+  padding:.45rem .9rem;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,0.05);
+  cursor:pointer;
+  transition: background .2s;
+}
+.chip:hover{background: #dee2e6;}
+.chip.active{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+  font-weight: 500;
+}
+
+/* Estilo do card de serviço/empréstimo */
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.card-piece{
+  background: var(--card);
+  padding:0;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px var(--shadow);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card-piece:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 8px 20px var(--shadow)}
+.card-piece i.fa-solid{
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+.card-body{padding:1.5rem;text-align: center;}
+.card-body h5{color:var(--accent); margin-top: 0.5rem; font-weight: 600;}
+.rate{color:var(--text-dark);font-weight:700;font-size:1.1rem}
+.btn-buy{
+  background:var(--accent);
+  border:0;
+  color:#fff;
+  padding:.6rem 1.25rem;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight: 600;
+  transition: background .2s;
+}
+.btn-buy:hover{background: #0056b3;}
+.btn-buy:focus{outline:2px solid var(--accent-light)}
+
+/* FAB do WhatsApp mantido */
+.whatsapp-fab{
+  position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(0,0,0,0.4);z-index:1100;border:none;
+}
+.whatsapp-fab:active{transform:translateY(1px)}
+
+footer{padding:2rem 1rem;text-align:center;color:var(--metal);border-top:1px dashed rgba(0,0,0,0.1);margin-top:2rem; background: var(--card);}
+
+.map-card{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,0.1);}
+
+/* Seção de features/diferenciais */
+.features{padding:3rem 1rem;background:var(--card);border-radius:12px;margin-bottom:2rem;text-align:center;box-shadow: 0 4px 12px var(--shadow);}
+.features i{color:var(--accent);font-size:2.2rem;margin-bottom:.5rem}
+.reviews{padding:3rem 1rem;margin-bottom:2rem;text-align:center; background: #e9ecef;}
+.review{
+  background: var(--card);
+  border-radius:10px;
+  padding:1.2rem;
+  color:var(--text-dark);
+  margin-bottom:1rem;
+  border:1px solid rgba(0,0,0,0.1);
+}
+.star{color:#ffc107}
+
+/* Seção Sobre */
+.about{padding:3rem 1rem;margin-bottom:2rem;background:var(--card);border-radius:12px;text-align:center; box-shadow: 0 4px 12px var(--shadow);}
+.about h2{margin-bottom:1rem;color:var(--accent)}
+.about p{max-width:800px;margin:0 auto;line-height:1.6; color: var(--metal);}
+
+/* Destaques - mantido como scroll horizontal */
+.most-sold{padding:2rem 0;margin-bottom:2rem}
+.most-sold h2{text-align:center;margin-bottom:1rem;color:var(--accent)}
+.most-sold-grid{display:flex;overflow-x:auto;gap:1.5rem;padding:0 1rem}
+.most-sold-grid::-webkit-scrollbar{height:8px}
+.most-sold-grid::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
+.most-sold-grid::-webkit-scrollbar-track{background:rgba(0,0,0,0.1)}
+
+@media(max-width:576px){ header .brand{font-size:1.2rem} }
+</style>
+</head>
+<body>
+
+<header class="site-hero" role="banner">
+  <div class="container">
+    <div class="brand">CrediCerta</div>
+    <h1 data-aos="fade-up">Seu Empréstimo Pessoal Rápido e Descomplicado</h1>
+    <p class="lead" data-aos="fade-up" data-aos-delay="80">Taxas justas, simulação online e dinheiro na conta em até 24h. Soluções de crédito para o que você precisar.</p>
+    <div data-aos="fade-up" data-aos-delay="160">
+      <a href="#catalog" class="chip active">Ver Opções de Crédito</a>
+      <a href="#contato" class="chip">Simular Online</a>
+    </div>
+  </div>
+</header>
+
+<section class="most-sold" data-aos="fade-up">
+  <h2>Ofertas em Destaque</h2>
+  <div class="most-sold-grid">
+    <div class="card-piece" style="min-width:250px">
+      <div class="card-body">
+        <i class="fa-solid fa-money-bill-transfer"></i>
+        <h5>Empréstimo Rápido</h5>
+        <p class="small text-muted">Ideal para emergências. Liberação em 1 dia útil.</p>
+        <div class="rate">Taxa a partir de 1,9% a.m.</div>
+        <button class="btn-buy" data-name="Empréstimo Rápido">Simular Agora</button>
+      </div>
+    </div>
+    <div class="card-piece" style="min-width:250px">
+      <div class="card-body">
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        <h5>Crédito Consignado</h5>
+        <p class="small text-muted">Exclusivo para aposentados e servidores públicos.</p>
+        <div class="rate">As menores taxas do mercado!</div>
+        <button class="btn-buy" data-name="Crédito Consignado">Simular Agora</button>
+      </div>
+    </div>
+    <div class="card-piece" style="min-width:250px">
+      <div class="card-body">
+        <i class="fa-solid fa-house-chimney-window"></i>
+        <h5>Refinanciamento Imóvel</h5>
+        <p class="small text-muted">Use seu imóvel como garantia e pegue grandes valores.</p>
+        <div class="rate">Até R$ 500.000,00</div>
+        <button class="btn-buy" data-name="Refinanciamento Imóvel">Simular Agora</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="container-main" id="catalog">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 style="margin:0">Nossas Soluções de Crédito</h2>
+    <div class="text-muted small">Dinheiro para você resolver.</div>
+  </div>
+
+  <div class="controls" role="tablist" aria-label="Categorias">
+    <button class="chip active" data-filter="all">Todas</button>
+    <button class="chip" data-filter="pessoal">Pessoal</button>
+    <button class="chip" data-filter="garantia">Com Garantia</button>
+    <button class="chip" data-filter="negocios">Para Negócios</button>
+  </div>
+
+  <div class="catalog-grid" id="catalogGrid">
+    <div class="card-piece" data-category="pessoal" data-aos="fade-up">
+      <div class="card-body">
+        <i class="fa-solid fa-circle-check"></i>
+        <h5>Empréstimo Sem Garantia</h5>
+        <p>Liberação rápida. Não exige bens ou avais.</p>
+        <div class="rate">Até R$ 10.000,00</div>
+        <button class="btn-buy" data-name="Empréstimo Sem Garantia">Simular (R$ 10.000)</button>
+      </div>
+    </div>
+    <div class="card-piece" data-category="pessoal" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-body">
+        <i class="fa-solid fa-percent"></i>
+        <h5>Empréstimo INSS</h5>
+        <p>Aposentados e pensionistas. As menores taxas.</p>
+        <div class="rate">Pagamento em até 84x</div>
+        <button class="btn-buy" data-name="Empréstimo INSS">Simular (Consignado)</button>
+      </div>
+    </div>
+    <div class="card-piece" data-category="garantia" data-aos="fade-up" data-aos-delay="200">
+      <div class="card-body">
+        <i class="fa-solid fa-car"></i>
+        <h5>Empréstimo C/ Garantia de Veículo</h5>
+        <p>Até 90% do valor do seu carro, com juros baixos.</p>
+        <div class="rate">Prazo de 60 meses</div>
+        <button class="btn-buy" data-name="Empréstimo C/ Garantia de Veículo">Simular (Garantia)</button>
+      </div>
+    </div>
+    <div class="card-piece" data-category="negocios" data-aos="fade-up" data-aos-delay="300">
+      <div class="card-body">
+        <i class="fa-solid fa-briefcase"></i>
+        <h5>Crédito para Capital de Giro</h5>
+        <p>Para sua empresa crescer e cobrir despesas operacionais.</p>
+        <div class="rate">Aprovação PJ/MEI</div>
+        <button class="btn-buy" data-name="Crédito para Capital de Giro">Simular (Empresa)</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="features">
+  <div class="container">
+    <h2 class="mb-4 text-dark">Vantagens da CrediCerta</h2>
+    <div class="row g-4">
+      <div class="col-md-4"><i class="fa-solid fa-bolt-lightning"></i><h5>Processo Rápido</h5><p class="text-muted">Simulação e pré-aprovação em menos de 5 minutos.</p></div>
+      <div class="col-md-4"><i class="fa-solid fa-lock"></i><h5>Segurança Total</h5><p class="text-muted">Seus dados protegidos por criptografia de ponta.</p></div>
+      <div class="col-md-4"><i class="fa-solid fa-handshake"></i><h5>Atendimento Humanizado</h5><p class="text-muted">Consultores reais via WhatsApp para tirar suas dúvidas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="container">
+    <h2 class="mb-4 text-dark">O que nossos clientes dizem</h2>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="review"><p>“Precisei de dinheiro para reformar e fui atendido rapidamente, com a melhor taxa.”</p><div><span class="star">★★★★★</span></div><small>- Marcos T.</small></div></div>
+      <div class="col-md-4"><div class="review"><p>“Fiz um consignado sem sair de casa e o dinheiro caiu no dia seguinte. Serviço excelente!”</p><div><span class="star">★★★★★</span></div><small>- Helena C.</small></div></div>
+      <div class="col-md-4"><div class="review"><p>“O consultor pelo WhatsApp me ajudou a escolher a melhor opção para minha pequena empresa.”</p><div><span class="star">★★★★★</span></div><small>- Ricardo P.</small></div></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="about" data-aos="fade-up">
+  <h2>A CrediCerta e Você</h2>
+  <p>A CrediCerta é uma plataforma financeira que conecta você às melhores opções de crédito do mercado. Nossa missão é oferecer transparência e acesso fácil ao dinheiro que você precisa, seja para realizar um sonho, cobrir uma emergência ou investir no seu negócio. Fale conosco e comece sua simulação sem compromisso.</p>
+</section>
+
+<section id="contato" class="container-main">
+  <div class="container d-flex flex-column flex-lg-row gap-4 align-items-start">
+    <div style="flex:1">
+      <h3>Simulação e Atendimento</h3>
+      <p>Nossa equipe está disponível para tirar todas as suas dúvidas e guiar você no processo de contratação do empréstimo ideal.</p>
+      <p><strong>Horário:</strong> Segunda–Sexta 08:30–17:30</p>
+      <p><i class="fa-solid fa-phone"></i> WhatsApp: <a href="https://wa.me/5563999607019?text=Ol%C3%A1%20CrediCerta,%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o%20de%20empr%C3%A9stimo." target="_blank" rel="noopener noreferrer">+55 (63) 99960-7019</a></p>
+    </div>
+    <div style="flex:1" class="map-card">
+      <iframe loading="lazy" title="CrediCerta - Localização" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.0!2d-46.633309!3d-23.55052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c5d1f1e6b5%3A0x8a9a4f4b9b9b9b9b!2sSão%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000" width="100%" height="260" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+  </div>
+</section>
+
+<button class="whatsapp-fab" id="waFab" aria-label="Conversar no WhatsApp">
+  <i class="fa-brands fa-whatsapp" style="font-size:20px"></i>
+</button>
+
+<footer>
+  <div>© CrediCerta Soluções Financeiras — Simulações sujeitas à análise de crédito.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({duration:700, once:true});
+
+// Filtragem de categoria (Lógica mantida, funciona com os novos data-filter)
+const chips = document.querySelectorAll('.chip[data-filter]');
+const cards = document.querySelectorAll('.catalog-grid .card-piece');
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const f = chip.dataset.filter;
+    cards.forEach(card => {
+      if(f === 'all' || card.dataset.category === f) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Ações do WhatsApp (Textos atualizados)
+const WA_NUMBER = '5563999607019';
+
+// Função para abrir o WhatsApp com o nome do tipo de empréstimo
+function openWhatsAppMessage(itemName){
+  const text = encodeURIComponent(`Olá CrediCerta, gostaria de simular um: ${itemName}. Pode me ajudar?`);
+  window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank');
+}
+
+// Adiciona o evento aos botões "Simular Agora"
+document.querySelectorAll('.btn-buy').forEach(b => {
+  b.addEventListener('click', () => openWhatsAppMessage(b.dataset.name));
+});
+
+// Adiciona o evento ao botão FAB
+document.getElementById('waFab').addEventListener('click', () => {
+  const text = encodeURIComponent('Olá CrediCerta, gostaria de falar com um consultor sobre as opções de crédito.');
+  window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank');
+});
+</script>
+</body>
+</html>
+</body>
+</html>
